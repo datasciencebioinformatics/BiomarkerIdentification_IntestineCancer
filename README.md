@@ -1,8 +1,8 @@
-# BiomarkerIdentification_IntestineCancer
+# BiomarkerIdentification_ProstateCancer
 
 ## Pre-processment in bash 
 ### 1- Set up the Project_Configuration.txt file
-#### project_folder    : /home/felipe/Documentos/BiomarkerIdentification_IntestineCancer/
+#### project_folder    : /home/felipe/Documentos/BiomarkerIdentification_ProstateCancer/
 #### Manifest file     : gdc_manifest.2026-03-31.143944.txt
 #### Metadata file     : metadata.cohort.2026-03-31.json
 #### Sample sheet file : gdc_sample_sheet.2026-03-31.tsv
@@ -15,7 +15,7 @@ Project_Configuration.txt
 gdc-client download -m $project_folder$path_to_gdc_manifest_file --dir $project_folder
 
 ### 3- bash script to process the downladed files into reads count tables
-$project_folder"bash/BiomarkerIdentification_IntestineCancer_Download_Tabel_From_PortalGdcCancer.sh"
+$project_folder"bash/Download_Tabel_From_PortalGdcCancer.sh"
 
 
 ## Differential expression framework in R
