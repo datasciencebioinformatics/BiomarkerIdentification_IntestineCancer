@@ -5,7 +5,7 @@
 Project_Configuration.txt
 
 ### 2- gdc-client command line to download the samples from the PortalGdcCancer cancer database
-gdc-client download -m $project_folder$path_to_gdc_manifest_file --dir $project_folder
+gdc-client download -m $star_gene_counts_manifest_file --dir $project_folder
 
 ### 3- bash script to process the downladed files into reads count tables
 $project_folder"bash/Download_Tabel_From_PortalGdcCancer.sh"
