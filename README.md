@@ -5,7 +5,6 @@
 config/Project_Configuration.txt
 
 ### 2- Filter Sample Sheet and Manifest files
-chmod a+x $project_folder$FilterSampleSheet_Manifest_files.sh
 $project_folder$FilterSampleSheet_Manifest_files.sh
 
 ### 3- gdc-client command line to download the samples from the PortalGdcCancer cancer database
