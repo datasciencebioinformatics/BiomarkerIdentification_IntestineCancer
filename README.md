@@ -1,4 +1,4 @@
-# BiomarkerIdentification_IntestineCancer
+# BiomarkerIdentification_ProstateCancer
 
 ## Pre-processment in bash 
 ### 1- Set up the Project_Configuration.txt file
