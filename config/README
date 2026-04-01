@@ -33,4 +33,6 @@ mkdir $data_folder
 # Copiar somente os arquivos tsv das tabelas para um diretório a parte.
 cp $project_folder*/*.tsv $data_folder
 
-# Upload somente das tabelas de read counts para o github pasta data.
+# Take only the gene ids
+cat $project_folder"/data/"* | awk '{print $1}' | sort -u | grep -v "gene_id" | grep -v "N_ambiguous" | grep -v "N_multimapping" | grep -v "N_noFeature" | grep -v "N_unmapped"  >  $project_folder"gene_ids.txt"
+
