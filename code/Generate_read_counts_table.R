@@ -23,31 +23,55 @@ clinical_file=paste(project_folder,"metadata/clinical.tsv",sep="")
 
 # Set the path to sample file
 sample_file=paste(project_folder,"metadata/sample.tsv",sep="")
+
+# Take the list of gene ids
+gene_ids_file<-paste(project_folder,"metadata/gene_ids.txt",sep="")
 ###################################################################################
+# Load data
 # Load clinical data
 clinical_data<-read.delim(file = clinical_file, sep = '\t', header = TRUE,fill=TRUE)
 
 # Load sample data
 sample_data<-read.delim(file = sample_file, sep = '\t', header = TRUE,fill=TRUE)
 
-# Load sample data
+# Load sample sheet data
 sample_sheet_data<-read.delim(file = Sample_sheet_filtered_file, sep = '\t', header = TRUE,fill=TRUE)
 
-# Merge clinical and sample
-merge_clinical_sample<-merge(clinical_data,sample_data,by="cases.case_id")
-
-# Compile metadata
-metadata_table<-merge(merge_clinical_sample,sample_sheet_data,by.x="cases.submitter_id.x",by.y="Case.ID")
-
-# Take only the collumns of interest
-metadata_table<-unique(metadata_table[,c("cases.submitter_id.x","cases.case_id","samples.tissue_type","diagnoses.ajcc_clinical_t","File.ID","File.Name")])
-
-# Write tsv file
-write_tsv(metadata_table, paste(project_folder,"tables/metadata_table.tsv",sep=""))
+# Load gene ids data
+gene_ids_data<-read.delim(file = gene_ids_file, sep = '\t', header = TRUE,fill=TRUE)
 ###################################################################################
+# Star dataframe with all gene ids
+read_counts_table<-data.frame(gene_id=as.vector(gene_ids_data[,1]))
+
+# Set rownames
+rownames(read_counts_table)<-read_counts_table$gene_id
+
 # For each file in the sample_sheet_data, read the gene counts data
 for (sample in rownames(sample_sheet_data))
 {
+  # Take the file id
+  file_id<-sample_sheet_data[sample,"File.ID"]
 
+  # Take the name of the file
+  file_name<-sample_sheet_data[sample,"File.Name"]
+
+  # Read the counts table
+  counts_table<-read.delim(paste(project_folder,"data/",file_name,sep=""), skip = 5)
+
+  # Set the colnames
+  colnames(counts_table)<-c("gene_id",	"gene_name",	"gene_type",	"unstranded",	"stranded_first",	"stranded_second",	"tpm_unstranded",	"fpkm_unstranded",	"fpkm_uq_unstranded")
+
+  # Set rownames
+  rownames(counts_table)<-counts_table$gene_id
+
+  # Start data.frame for the table
+  df_counts_table<-data.frame(file_id=counts_table[rownames(counts_table),"unstranded"])
+
+  # Set file_id in the colname
+  colnames(df_counts_table)<-file_id
+
+  # Add to table
+  read_counts_table<-cbind(read_counts_table,df_counts_table)
 }
+
 
