@@ -1,8 +1,5 @@
 ###################################################################################
 # Set the project configuration
-# Se the path to output folder
-project_folder="/home/felipe/Documentos/BiomarkerIdentification_ProstateCancer/"
-
 # Set the path to manifest file
 Manifest_file=paste(project_folder,"gdc_manifest.2026-04-01.072557.txt",sep="")
 
@@ -17,4 +14,17 @@ Biospecimen_file=paste(project_folder,"biospecimen.cohort.2026-04-01.tar.gz",sep
 
 # Set the path to clinical cohort file
 Clinical_file=paste(project_folder,"clinical.cohort.2026-04-01.tar.gz",sep="")
+
+# Set the path to clinical file
+clinical_file=paste(project_folder,"metadata/clinical.tsv",sep="")
+
+# Set the path to sample file
+sample_file=paste(project_folder,"metadata/sample.tsv",sep="")
 ###################################################################################
+# Load clinical data
+clinical_data<-read.delim(file = clinical_file, sep = '\t', header = TRUE,fill=TRUE)
+
+# Load sample data
+sample_data<-read.delim(file = sample_file, sep = '\t', header = TRUE,fill=TRUE)
+
+# 
