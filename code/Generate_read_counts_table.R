@@ -46,6 +46,9 @@ read_counts_table<-data.frame(gene_id=as.vector(gene_ids_data[,1]))
 # Set rownames
 rownames(read_counts_table)<-read_counts_table$gene_id
 
+# Set rownames of 
+rownames(sample_sheet_data)<-sample_sheet_data$File.ID
+
 # For each file in the sample_sheet_data, read the gene counts data
 for (sample in rownames(sample_sheet_data))
 {
