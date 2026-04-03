@@ -1,7 +1,7 @@
 ###################################################################################
 # Set the project configuration
 # Set the path to manifest file
-Manifest_file=paste(project_folder,"metadata/gdc_manifest.2026-04-01.072557.txt",sep="")
+Manifest_file=paste(project_folder,"metadata/dc_manifest.2026-04-02.131024.txt",sep="")
 
 # Set the path to metadata cohort file
 Metadata_file=paste(project_folder,"metadata/metadata.cohort.2026-04-01.json",sep="")
