@@ -36,3 +36,6 @@ cp $project_folder*/*.tsv $data_folder
 # Take only the gene ids
 cat $project_folder"/data/"* | awk '{print $1}' | sort -u | grep -v "gene_id" | grep -v "N_ambiguous" | grep -v "N_multimapping" | grep -v "N_noFeature" | grep -v "N_unmapped"  >  $project_folder"gene_ids.txt"
 
+# Upload this file to metada folder
+# gdc_sample_sheet_star_gene_counts.tsv
+# /home/felipe/Documents/BiomarkerIdentification_ProstateCancer/metadata/gdc_sample_sheet_star_gene_counts.tsv
