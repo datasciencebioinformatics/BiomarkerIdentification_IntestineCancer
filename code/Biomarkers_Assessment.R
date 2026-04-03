@@ -26,7 +26,10 @@ known_biomarkers_file=paste(project_folder,"tables/Postate_Cancer_Known_Biomarke
 
 # Load data
 # Load clinical data
-known_biomarkers_data<-read.delim(file = known_biomarkers_file, sep = '\t', header = TRUE,fill=TRUE)
+known_biomarkers_data<-data.frame(read_excel(known_biomarkers_file) )
+
+# Start data.frame to store the biomarkers genes
+df_biomaker_genes<-data.frame(biomarkers=c(),genes=c())
 
 # For each Biomarker
 for (Biomarker in known_biomarkers_data$Biomarker)
@@ -35,10 +38,19 @@ for (Biomarker in known_biomarkers_data$Biomarker)
   known_biomarkers_info<-known_biomarkers_data[which(known_biomarkers_data$Biomarker == Biomarker),]  
   
   # Second, take the list of Genes for each experiment
-  genes<-known_biomarkers_info$Genes
-  
-  print(experiment)
+  genes<-unlist(strsplit(known_biomarkers_info$Genes, "\n"))
+
+  # Add to results table
+  df_biomaker_genes<-rbind(df_biomaker_genes,expand.grid(biomarkers = Biomarker, genes = genes))
 }
 #######################################################################################
-# 3 - Combile a data.frame with the known biomarker
+# 3 - Combile a data.frame with the known biomarker that are also differentially expressed genes.
+known_biomarker<-unique(as.vector(df_biomaker_genes$genes))
+
+# Take the name of the differentially expressed genes in the correspondence_table
+res_tumor_normal
+correspondence_table
+
+
+
 
