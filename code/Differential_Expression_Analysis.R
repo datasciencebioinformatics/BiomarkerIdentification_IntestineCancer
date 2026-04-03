@@ -7,9 +7,9 @@ dds <- DESeqDataSetFromMatrix(countData = read_counts_table,
 dds <- DESeq(dds)
 
 # Obtain the results
-res <- results(dds, contrast=c("Tissue.Type","Tumor","Normal"))
+res_tumor_normal <- results(dds, contrast=c("Tissue.Type","Tumor","Normal"))
 
 # Take 
-res<-data.frame(res[which(res$padj<0.05 & abs(res$log2FoldChange)>2),])
+res_tumor_normal<-data.frame(res_tumor_normal[which(res_tumor_normal$padj<0.05 & abs(res_tumor_normal$log2FoldChange)>2),])
 
                               
