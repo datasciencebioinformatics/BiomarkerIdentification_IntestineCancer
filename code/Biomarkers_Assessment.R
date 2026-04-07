@@ -56,12 +56,11 @@ for (gene in rownames(df_mean))
 # Add the Gene smbol to the table
 df_biomaker_genes
 
-#
-Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
-
+# Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
+selected_biomarkers<-df_mean[which(df_mean$foldChange_Tumor_Normal>=50 & df_mean$avg.normal <=10),]
 
 # Save list
-sheets_list <- list("tumor_genes"= res_tumor_normal, "primary_tumor_genes" = res_Primary_normal, "metastatic_tumor_genes"=res_Metastatic_normal)
+sheets_list <- list("tumor_genes"= res_tumor_normal, "primary_tumor_genes" = res_Primary_normal, "metastatic_tumor_genes"=res_Metastatic_normal, "selected_biomarkers" = selected_biomarkers)
 write_xlsx(sheets_list,paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
 
 
