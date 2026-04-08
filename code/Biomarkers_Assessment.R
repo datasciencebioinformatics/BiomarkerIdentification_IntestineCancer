@@ -41,13 +41,11 @@ for (gene in rownames(df_mean))
   df_mean[gene,"std.normal"]<-sd(read_counts_table_tpm[gene,normal_sample_ids])
   df_mean[gene,"std.tumor"]<-sd(read_counts_table_tpm[gene,tumor_sample_ids])
 }      
-# Add gene symbol
+# Add gene_name
+df_mean<-cbind(correspondence_table[rownames(df_mean),],df_mean)
 
 # Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
 selected_biomarkers<-df_mean[which(df_mean$foldChange_Tumor_Normal>=50 & df_mean$avg.normal <=10),]
-
-# Add gene_name
-selected_biomarkers<-cbind(correspondence_table[rownames(selected_biomarkers),],selected_biomarkers)
       
 # Save list
 sheets_list <- list("tumor_genes"= res_tumor_normal, "selected_biomarkers" = selected_biomarkers)
@@ -70,8 +68,11 @@ df_tumor_gene<-cbind(gene=rownames(tumor_biomarkers),sample_sheet_data[rownames(
 my_comparisons <- list( c("Tumor", "Normal"))
 
 # Save plot
-png(filename=paste(output_dir,paste("pca_boxplots_","3500_viscosity_128_p47",".png",sep=""),sep=""), width = 25, height = 30, res=600, units = "cm")  
+png(filename=paste(output_dir,paste("tumor_biomarkers_boxplot",".png",sep=""),sep=""), width = 12, height = 12, res=600, units = "cm")  
   # Plot the OOB errors
   ggplot(data = df_tumor_gene[,c("Tissue.Type","tpm")], aes(x = Tissue.Type, y =tpm)) +  geom_boxplot() + theme_bw() + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +theme(text=element_text(size=12)) +theme(legend.position="none")  + stat_compare_means(label = "p.signif", method = "t.test",comparisons = my_comparisons) + ggtitle(tumor_biomarkers$gene_name)
 dev.off()
+
+# Save statistics
+df_mean[rownames(tumor_biomarkers),]
 
