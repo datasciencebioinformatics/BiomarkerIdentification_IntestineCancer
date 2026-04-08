@@ -54,7 +54,18 @@ sheets_list <- list("tumor_genes"= res_tumor_normal, "selected_biomarkers" = sel
 write_xlsx(sheets_list,paste(project_folder,"Supplemental_Table_S1.xlsx",sep="" ))
 
 #######################################################################################################################################
-# Selected biomarkers plot t.test for the selected biomarkers
-tumor_biomarkers<-res_tumor_normal[which(res_tumor_normal$gene_name %in% known_biomarker),]
+# Selected biomarkers plot t.test for the selected biomarkers - Use only the first tumor genes
+tumor_biomarkers<-res_tumor_normal[which(res_tumor_normal$gene_name %in% known_biomarker),][1,]
+
+# Use the ggplot2 to plot the fpkm values for tumor and normal genes
+df_tumor_gene<-data.frame(sample_id=colnames(read_counts_table_tpm),tpm=as.vector(t(read_counts_table_tpm[rownames(tumor_biomarkers),])[,1]))
+
+# Set rownames
+rownames(df_tumor_gene)<-df_tumor_gene$sample_id
+
+# Add to collumn
+df_tumor_gene<-cbind(sample_sheet_data[rownames(df_tumor_gene),],df_tumor_gene)
+
+
 
 
