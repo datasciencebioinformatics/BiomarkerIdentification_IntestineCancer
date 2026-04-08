@@ -64,6 +64,20 @@ rownames(df_tumor_gene)<-df_tumor_gene$sample_id
 # Add to collumn
 df_tumor_gene<-cbind(gene=rownames(tumor_biomarkers),sample_sheet_data[rownames(df_tumor_gene),],df_tumor_gene)
 #######################################################################################################################################
+# Add to df_mean : 
+# USe clinical_data
+avg.stage_I + std.stage_I
+avg.stage_II + std.stage_II
+avg.stage_II + std.stage_III
+# Subset collumns
+clinical_data_sub<-clinical_data[,c("cases.case_id","stage")]
+
+
+
+rownames(df_tumor_gene) %in% clinical_data_sub$cases.case_id
+df_tumor_gene[clinical_data_sub$cases.case_id,]
+
+#######################################################################################################################################
 # Visualize: Specify the comparisons you want
 my_comparisons <- list( c("Tumor", "Normal"))
 
@@ -75,4 +89,9 @@ dev.off()
 
 # Save statistics
 df_mean[rownames(tumor_biomarkers),]
+#######################################################################################################################################
+
+
+
+
 
