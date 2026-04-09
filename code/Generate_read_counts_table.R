@@ -13,34 +13,8 @@ gene_ids_file<-paste(project_folder,"metadata/gene_ids.txt",sep="")
 # Load sample sheet data
 sample_sheet_data<-read.delim(file = Sample_sheet_filtered_file, sep = '\t', header = TRUE,fill=TRUE)
 
-# Load sample sheet data
-clinical_data<-read.delim(file = clinical_data_file, sep = '\t', header = TRUE,fill=TRUE)
-
-
-clinical_data$ID     <-clinical_data$cases.submitter_id
-sample_sheet_data$ID <-sample_sheet_data$Case.ID
-
-# Merge clinical and sample sheet
-clinical_data<-merge(clinical_data,sample_sheet_data, by="ID")
-
 # Load gene ids data
 gene_ids_data<-read.delim(file = gene_ids_file, sep = '\t', header = TRUE,fill=TRUE)
-###################################################################################
-# Add stages
-# Add state collumn
-clinical_data$stage<-NA
-
-# Set normal samples
-clinical_data[which(clinical_data$Tissue.Type.y %in% c("Normal")),"stage"]              <-"Normal"
-
-# Set stages
-clinical_data[which(clinical_data$diagnoses.ajcc_clinical_t %in% c("T1b", "T1c")),"stage"]              <-"stage_1"
-clinical_data[which(clinical_data$diagnoses.ajcc_clinical_t %in% c("T2", "T2a", "T2b", "T2c")),"stage"] <-"stage_2"
-clinical_data[which(clinical_data$diagnoses.ajcc_clinical_t %in% c("T3a", "T3b")),"stage"]              <-"stage_3"
-
-
-
-
 ###################################################################################
 # Star dataframe with all gene ids unstranded
 read_counts_table<-data.frame(gene_id=as.vector(gene_ids_data[,1]))
