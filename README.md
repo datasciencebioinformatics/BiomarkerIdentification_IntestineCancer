@@ -21,6 +21,20 @@ source(paste(project_folder,"/code/Biomarkers_Identification.R",sep=""))
 ### 5- Biomarkers assessment
 source(paste(project_folder,"/code/Biomarkers_Assessment.R",sep=""))
 
+### 6- Select biomartkers with stepAIC
+source(paste(project_folder,"/code/SelectBiomartkers_with_stepAIC.R",sep=""))
+
+### 7- Unsupervised analyses
+#### Heatmap with the tumor genes
+#### Add information about stages
+source(paste(project_folder,"/code/Unsupervised_Analyses.R",sep=""))
+
+### 8- Decision tree analyses
+#### StepAIC variable selection from tumor_genes
+#### Decision tree tumor_genes
+source(paste(project_folder,"/code/DecisionTree_Analyses.R",sep=""))
+
+
 
 
 
