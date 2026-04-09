@@ -1,3 +1,5 @@
+seed(09042026)
+
 # BiomarkerIdentification_ProstateCancer
 project_folder="/home/felipe/Documents/BiomarkerIdentification_ProstateCancer/"
 project_folder="C:/Users/felip/OneDrive/Documentos/GitHub/BiomarkerIdentification_ProstateCancer/"
@@ -20,6 +22,8 @@ source(paste(project_folder,"/code/Biomarkers_Identification.R",sep=""))
 
 ### 5- Biomarkers assessment
 source(paste(project_folder,"/code/Biomarkers_Assessment.R",sep=""))
+
+
 
 # Split dataset 75%/25%
 
