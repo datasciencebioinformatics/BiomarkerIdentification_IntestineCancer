@@ -25,6 +25,7 @@ dev.off()
 normal_sample_ids     <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Normal"),])
 tumor_sample_ids      <- rownames(sample_sheet_data[which(sample_sheet_data$Tissue.Type     == "Tumor"),])
 
+
 # Biomarkers whose fold change (FC) was ≥50 and average TPM of control samples ≤ 10.
 # First, compile data.frame with 
 # Take p-value
@@ -33,13 +34,15 @@ df_mean<-data.frame(
     avg.normal=rowMeans(read_counts_table_tpm[rownames(res_tumor_normal),normal_sample_ids]),
     std.normal=0,
     avg.tumor=rowMeans(read_counts_table_tpm[rownames(res_tumor_normal),tumor_sample_ids]),
-    std.tumor=0 )
+    std.tumor=0)
+
+  
 
 # For each gene, calculate the std too the 
 for (gene in rownames(df_mean))
 {
   df_mean[gene,"std.normal"]<-sd(read_counts_table_tpm[gene,normal_sample_ids])
-  df_mean[gene,"std.tumor"]<-sd(read_counts_table_tpm[gene,tumor_sample_ids])
+  df_mean[gene,"std.tumor"] <-sd(read_counts_table_tpm[gene,tumor_sample_ids])
 }      
 # Add gene_name
 df_mean<-cbind(correspondence_table[rownames(df_mean),],df_mean)
@@ -62,16 +65,7 @@ df_tumor_gene<-data.frame(sample_id=colnames(read_counts_table_tpm),tpm=as.vecto
 rownames(df_tumor_gene)<-df_tumor_gene$sample_id
 
 # Add to collumn
-df_tumor_gene<-cbind(gene=rownames(tumor_biomarkers),sample_sheet_data[rownames(df_tumor_gene),],df_tumor_gene)
-#######################################################################################################################################
-# Add to df_mean : 
-# USe clinical_data
-avg.stage_I + std.stage_I
-avg.stage_II + std.stage_II
-avg.stage_II + std.stage_III
-# Subset collumns
-clinical_data_sub<-clinical_data[,c("cases.case_id","stage")]
-
+df_tumor_gene<-cbind(gene=rownames(tumor_biomarkers),sample_sheet_data[rownames(df_tumor_gene),],df_tumor_gene )
 
 #######################################################################################################################################
 # Visualize: Specify the comparisons you want
