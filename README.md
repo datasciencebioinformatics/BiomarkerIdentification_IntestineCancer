@@ -25,7 +25,7 @@ source(paste(project_folder,"/code/Biomarkers_Identification.R",sep=""))
 ### 5- Biomarkers assessment
 source(paste(project_folder,"/code/Biomarkers_Assessment.R",sep=""))
 
-### 6- Biomarkers assessment
+### 6- Decision trees
 source(paste(project_folder,"/code/Biomarkers_DecisionTree.R",sep=""))
 
 
