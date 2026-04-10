@@ -24,16 +24,16 @@ source(paste(project_folder,"/code/Biomarkers_Identification.R",sep=""))
 source(paste(project_folder,"/code/Biomarkers_Assessment.R",sep=""))
 
 ### 6- Biomarkers assessment
-source(paste(project_folder,"Biomarkers_DecisionTree.R",sep=""))
+source(paste(project_folder,"/code/Biomarkers_DecisionTree.R",sep=""))
 
 ### 7- Biomarkers assessment
-source(paste(project_folder,"Biomarkers_BaysianNetwork.R",sep=""))
+source(paste(project_folder,"/code/Biomarkers_BaysianNetwork.R",sep=""))
 
 ### 8- Biomarkers assessment
-source(paste(project_folder,"Biomarkers_RandomForest.R",sep=""))
+source(paste(project_folder,"/code/Biomarkers_RandomForest.R",sep=""))
 
 ### 9- Biomarkers assessment
-source(paste(project_folder,"Biomarkers_LinearRegression.R",sep=""))
+source(paste(project_folder,"/code/Biomarkers_LinearRegression.R",sep=""))
 
 
 
