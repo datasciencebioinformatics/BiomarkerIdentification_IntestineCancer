@@ -23,29 +23,18 @@ source(paste(project_folder,"/code/Biomarkers_Identification.R",sep=""))
 ### 5- Biomarkers assessment
 source(paste(project_folder,"/code/Biomarkers_Assessment.R",sep=""))
 
+### 6- Biomarkers assessment
+source(paste(project_folder,"Biomarkers_DecisionTree.R",sep=""))
 
+### 7- Biomarkers assessment
+source(paste(project_folder,"Biomarkers_BaysianNetwork.R",sep=""))
 
-# Split dataset 75%/25%
+### 8- Biomarkers assessment
+source(paste(project_folder,"Biomarkers_RandomForest.R",sep=""))
 
-# lm method was used to fit the trainning set on the surrogate models
-decision_tree_tpm <- lm(surrogate_model, data = training_set)
+### 9- Biomarkers assessment
+source(paste(project_folder,"Biomarkers_LinearRegression.R",sep=""))
 
-# Perform stepwise selection (direction "both", "backward", "forward")
-surrogate_model_final_lm <- stepAIC(multiple_linear_regression_lm, direction = "backward", trace = 0)
-
-# lm method was used to fit the trainning set on the selected model
-multiple_linear_regression_lm_selected<-lm(surrogate_model_final_lm, data = training_set)
-
-# Calculate Cor, MAE, RMSE
-
-### 8- Decision tree analyses
-#### StepAIC variable selection from tumor_genes
-#### Decision tree tumor_genes
-source(paste(project_folder,"/code/DecisionTree_Analyses.R",sep=""))
-  
-
-### 6- Select biomartkers with stepAIC
-source(paste(project_folder,"/code/SelectBiomartkers_with_stepAIC.R",sep=""))
 
 
 
