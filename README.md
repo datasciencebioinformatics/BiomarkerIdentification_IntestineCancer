@@ -1,4 +1,4 @@
-seed(09042026)
+set.seed(09042026)
 
 # BiomarkerIdentification_ProstateCancer
 project_folder="/home/felipe/Documents/BiomarkerIdentification_ProstateCancer/"
