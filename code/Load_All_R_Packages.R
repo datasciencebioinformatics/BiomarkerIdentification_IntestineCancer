@@ -7,4 +7,5 @@ library("ggpubr")
 library(rpart)
 library(rattle)
 library("stringr")
+library("arules")
 
